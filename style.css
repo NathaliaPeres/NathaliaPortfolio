@@ -69,6 +69,36 @@ button {
   opacity: 0;
 }
 
+.botaoContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: self-start;
+}
+
+.toast {
+  position: absolute;
+  transform: translateY(-140%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  width: 140px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: var(--clr-primary1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.toast.show {
+  opacity: 0.8;
+  visibility: visible;
+}
+
 .img-background-mobile {
   display: none;
 }
@@ -91,6 +121,7 @@ p {
   align-items: center;
 }
 .column-left {
+  flex: 1;
   display: flex;
   padding: 0px 160px 0px 160px;
   gap: 32px;
@@ -112,11 +143,34 @@ p {
   height: 100%;
 }
 .img-background {
-  height: 100vh;
-  align-self: center;
+  opacity: 0;
 }
 .column-right {
-  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  height: 100vh;
+  width: 54vh;
+}
+
+.garra {
+  position: absolute;
+  object-fit: contain;
+  width: 100%;
+  max-width: 100%;
+  z-index: 4;
+}
+
+.galinha {
+  position: absolute;
+  object-fit: contain;
+  width: 100%;
+  max-width: 100%;
+  bottom: 200px;
+}
+
+.estudos-de-caso {
+  height: 1024px;
 }
 
 @media (max-width: 576px) {

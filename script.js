@@ -1,15 +1,16 @@
 const hero = document.querySelector(".hero");
 const text = document.querySelector("h1");
+const toast = document.querySelector(".toast");
+const garra = document.querySelector(".garra");
 
 function shadow(e) {
   const { offsetWidth: width, offsetHeight: height } = hero;
 
-  let { offsetX: x, offsetY: y } = e;
+  const rect = hero.getBoundingClientRect();
 
-  if (e.target !== hero) {
-    x += e.target.offsetLeft;
-    y += e.target.offsetTop;
-  }
+  // Calcule a posição do mouse relativa ao 'hero'
+  const x = e.clientX - rect.left; // Posição X relativa ao 'hero'
+  const y = e.clientY - rect.top; // Posição Y relativa ao 'hero'
 
   const maxShadowX = 30;
   const maxShadowY = 20;
@@ -20,10 +21,25 @@ function shadow(e) {
   text.style.textShadow = `
       ${xMove}px ${yMove}px rgba(169, 169, 121, 0.1)
     `;
+  garra.style.right = `-${xMove}px`;
 }
 
 hero.addEventListener("mousemove", shadow);
 
 function copyText() {
   navigator.clipboard.writeText("Você é gay");
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
 }
+
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const heroHeight = hero.offsetHeight;
+
+  const maxOffset = heroHeight - garra.offsetHeight;
+  const offset = Math.min(scrollY, maxOffset);
+
+  garra.style.top = `${offset}px`;
+});
