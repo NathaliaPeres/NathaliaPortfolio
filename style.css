@@ -112,6 +112,11 @@ h1 {
   text-transform: uppercase;
   text-shadow: 29px 18px rgba(169, 169, 121, 0.1);
 }
+h2 {
+  font-size: 40px;
+  text-transform: uppercase;
+  text-shadow: 29px 18px rgba(169, 169, 121, 0.1);
+}
 p {
   font-size: 16px;
   font-weight: 300;
@@ -153,24 +158,125 @@ p {
   width: 54vh;
 }
 
-.garra {
+.garra,
+.garraBase,
+.garraBarra {
   position: absolute;
   object-fit: contain;
-  width: 100%;
-  max-width: 100%;
+  width: 95%;
+  max-width: 95%;
   z-index: 4;
+}
+
+.garraBarra {
+  z-index: 1;
 }
 
 .galinha {
   position: absolute;
   object-fit: contain;
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
+  max-width: 80%;
   bottom: 200px;
 }
 
+.capivara {
+  position: absolute;
+  object-fit: contain;
+  width: 80%;
+  max-width: 80%;
+  bottom: 0;
+}
+
+.bunny {
+  position: absolute;
+  object-fit: contain;
+  width: 80%;
+  max-width: 80%;
+  bottom: 0;
+  right: 0;
+}
+
+.bunny:hover,
+.capivara:hover,
+.galinha:hover {
+  animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 forwards;
+  z-index: 3;
+}
+.bunny:not(:hover),
+.capivara:not(:hover),
+.galinha:not(:hover) {
+  animation: fadeOut 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 forwards;
+}
+
 .estudos-de-caso {
-  height: 1024px;
+  display: flex;
+  align-items: top;
+  margin: 64px 190px 64px 160px;
+  gap: 24px;
+}
+
+.contentEstudoDeCaso {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  flex: 1;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(496px, 1fr));
+  gap: 88px; /* Espaçamento entre os cards */
+  align-items: start; /* Garante alinhamento correto vertical */
+}
+.card {
+  display: flex;
+  position: relative;
+}
+.content-card {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--clr-primary2);
+  cursor: pointer;
+}
+.card:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #d469b0;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: -1;
+}
+
+.content-card:hover {
+  transform: translate(30px, 30px);
+}
+.text-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px;
+  gap: 8px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+@keyframes fadeOut {
+  0% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media (max-width: 576px) {

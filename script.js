@@ -2,6 +2,22 @@ const hero = document.querySelector(".hero");
 const text = document.querySelector("h1");
 const toast = document.querySelector(".toast");
 const garra = document.querySelector(".garra");
+const garraBase = document.querySelector(".garraBase");
+const garraBarra = document.querySelector(".garraBarra");
+
+const frames = [
+  "./imagens/framesGarra/garraanim1.png",
+  "./imagens/framesGarra/garraanim2.png",
+  "./imagens/framesGarra/garraanim3.png",
+  "./imagens/framesGarra/garraanim4.png",
+  "./imagens/framesGarra/garraanim5.png",
+  "./imagens/framesGarra/garraanim5.png",
+  "./imagens/framesGarra/garraanim5.png",
+  "./imagens/framesGarra/garraanim6.png",
+  "./imagens/framesGarra/garraanim7.png",
+  "./imagens/framesGarra/garraanim8.png",
+  "./imagens/framesGarra/garraanim9.png",
+];
 
 function shadow(e) {
   const { offsetWidth: width, offsetHeight: height } = hero;
@@ -22,9 +38,24 @@ function shadow(e) {
       ${xMove}px ${yMove}px rgba(169, 169, 121, 0.1)
     `;
   garra.style.right = `-${xMove}px`;
+  garraBase.style.right = `-${xMove}px`;
+  garraBarra.style.right = `-${xMove}px`;
 }
 
 hero.addEventListener("mousemove", shadow);
+hero.addEventListener("click", playAnimation);
+
+let currentFrame = 0;
+function playAnimation() {
+  if (currentFrame < frames.length) {
+    garra.src = frames[currentFrame];
+    currentFrame++;
+
+    setTimeout(playAnimation, 40);
+  } else {
+    currentFrame = 0;
+  }
+}
 
 function copyText() {
   navigator.clipboard.writeText("Você é gay");
@@ -42,4 +73,5 @@ window.addEventListener("scroll", () => {
   const offset = Math.min(scrollY, maxOffset);
 
   garra.style.top = `${offset}px`;
+  garraBarra.style.top = `${offset}px`;
 });
